@@ -1,5 +1,6 @@
 const path = require('path');
 const PugPlugin = require('pug-plugin');
+const CopyPlugin = require("copy-webpack-plugin");
 
 module.exports = {
     output: {
@@ -10,6 +11,12 @@ module.exports = {
     plugins: [
         new PugPlugin({
             entry: 'src/pages/',
+        }),
+        new CopyPlugin({
+            patterns: [{
+                from: 'assets/images/**/*',
+                to: ''
+            }]
         })
     ],
     mode: 'production',
@@ -22,9 +29,7 @@ module.exports = {
         rules: [
             {
                 test: /\.scss$/,
-                use: [
-                    'sass-loader',
-                ],
+                use: ['sass-loader'],
                 type: "asset/resource",
                 generator: {
                     filename: "assets/styles/[name].css",
@@ -32,10 +37,8 @@ module.exports = {
             },
             {
                 test: /\.js$/,
-                use: [
-                    'babel-loader'
-                ],
-            }
+                use: ['babel-loader'],
+            },
         ]
     }
 }
