@@ -1,0 +1,7 @@
+.DS_Store
+.idea
+.local
+.run
+node_modules
+public
+dist
