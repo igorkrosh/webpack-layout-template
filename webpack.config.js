@@ -4,7 +4,7 @@ const PugPlugin = require('pug-plugin');
 module.exports = {
     output: {
         path: path.join(__dirname, 'dist/'),
-        clean: true
+        clean: true,
     },
     plugins: [
         new PugPlugin({
@@ -16,5 +16,19 @@ module.exports = {
         alias: {
             '@src': path.resolve(__dirname, 'src/'),
         }
+    },
+    module: {
+        rules: [
+            {
+                test: /\.scss$/,
+                use: [
+                    'sass-loader',
+                ],
+                type: "asset/resource",
+                generator: {
+                    filename: "assets/styles/[name].css",
+                },
+            }
+        ]
     }
 }
