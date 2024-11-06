@@ -5,4 +5,6 @@ html(lang="ru")
     include @src/components/head
     body
         .container
-            h1 Hi from PUG! 
+            h1 Hi from PUG!
+        +IncludeJS('bundle.js')
+        +IncludeJS('main.js')

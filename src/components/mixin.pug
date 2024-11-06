@@ -3,5 +3,5 @@ mixin IncludeCSS(filename)
     link(rel="stylesheet", href=path)
 
 mixin IncludeJS(filename)
-    - let path = `assets/js/${filename}`
+    - let path = `@src/scripts/${filename}`
     script(src=path)

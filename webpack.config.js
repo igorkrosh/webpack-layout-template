@@ -5,6 +5,7 @@ module.exports = {
     output: {
         path: path.join(__dirname, 'dist/'),
         clean: true,
+        filename: 'assets/scripts/[name].js'
     },
     plugins: [
         new PugPlugin({
@@ -28,6 +29,12 @@ module.exports = {
                 generator: {
                     filename: "assets/styles/[name].css",
                 },
+            },
+            {
+                test: /\.js$/,
+                use: [
+                    'babel-loader'
+                ],
             }
         ]
     }
