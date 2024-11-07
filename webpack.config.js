@@ -27,7 +27,16 @@ module.exports = {
             ]
         })
     ],
-    mode: 'production',
+    devServer: {
+        compress: false,
+        port: 9000,
+        hot: true,
+        static: {
+            directory: path.join(__dirname, './'),
+            serveIndex: true,
+        },
+    },
+    mode: 'development',
     resolve: {
         alias: {
             '@src': path.resolve(__dirname, 'src/'),
