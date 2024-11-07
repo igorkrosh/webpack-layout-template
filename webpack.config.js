@@ -1,6 +1,7 @@
 const path = require('path');
+const glob = require('glob');
+
 const PugPlugin = require('pug-plugin');
-const CopyPlugin = require("copy-webpack-plugin");
 
 module.exports = {
     output: {
@@ -12,17 +13,13 @@ module.exports = {
         new PugPlugin({
             entry: 'src/pages/',
         }),
-        new CopyPlugin({
-            patterns: [{
-                from: 'assets/images/**/*',
-                to: ''
-            }]
-        })
     ],
     mode: 'production',
     resolve: {
         alias: {
             '@src': path.resolve(__dirname, 'src/'),
+            '@assets': path.resolve(__dirname, 'assets/'),
+            'ttf-loader': path.resolve(__dirname, 'loaders/ttf-loader.js'),
         }
     },
     module: {
@@ -38,6 +35,13 @@ module.exports = {
             {
                 test: /\.js$/,
                 use: ['babel-loader'],
+            },
+            {
+                test: /\.(gif|png|jpe?g|svg)$/i,
+                type: 'asset/resource',
+                generator: {
+                    filename: '[path][name][ext]'
+                }
             },
         ]
     }
