@@ -1,0 +1,28 @@
+@mixin FontFace($fontFamily, $fileName, $weight, $style)
+{
+    @font-face {
+        font-family: $fontFamily;
+        font-display: swap;
+        src: url("#{$fileName}.woff") format("woff"), url("#{$fileName}.woff2") format("woff2");
+        font-weight: #{$weight};
+        font-style: #{$style};
+    }
+}
+@include FontFace("Inter", "../fonts/Inter/Inter_18pt-ThinItalic", "100", "italic");
+@include FontFace("Inter", "../fonts/Inter/Inter_18pt-Thin", "100", "regular");
+@include FontFace("Inter", "../fonts/Inter/Inter_18pt-SemiBoldItalic", "700", "italic");
+@include FontFace("Inter", "../fonts/Inter/Inter_18pt-SemiBold", "700", "regular");
+@include FontFace("Inter", "../fonts/Inter/Inter_18pt-Regular", "400", "regular");
+@include FontFace("Inter", "../fonts/Inter/Inter_18pt-MediumItalic", "500", "italic");
+@include FontFace("Inter", "../fonts/Inter/Inter_18pt-Medium", "500", "regular");
+@include FontFace("Inter", "../fonts/Inter/Inter_18pt-LightItalic", "300", "italic");
+@include FontFace("Inter", "../fonts/Inter/Inter_18pt-Light", "300", "regular");
+@include FontFace("Inter", "../fonts/Inter/Inter_18pt-Italic", "400", "italic");
+@include FontFace("Inter", "../fonts/Inter/Inter_18pt-ExtraLightItalic", "300", "italic");
+@include FontFace("Inter", "../fonts/Inter/Inter_18pt-ExtraLight", "300", "regular");
+@include FontFace("Inter", "../fonts/Inter/Inter_18pt-ExtraBoldItalic", "800", "italic");
+@include FontFace("Inter", "../fonts/Inter/Inter_18pt-ExtraBold", "800", "regular");
+@include FontFace("Inter", "../fonts/Inter/Inter_18pt-BoldItalic", "700", "italic");
+@include FontFace("Inter", "../fonts/Inter/Inter_18pt-Bold", "700", "regular");
+@include FontFace("Inter", "../fonts/Inter/Inter_18pt-BlackItalic", "900", "italic");
+@include FontFace("Inter", "../fonts/Inter/Inter_18pt-Black", "900", "regular");
