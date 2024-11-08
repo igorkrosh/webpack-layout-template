@@ -77,7 +77,7 @@ class Ttf2WoffPlugin
 
         return {
             fontFamily: dirName,
-            filePath: `../fonts/${dirName}/${filename}`,
+            filePath: `@assets/fonts/converted/${dirName}/${filename}`,
             weight: weight,
             style: style
         }
