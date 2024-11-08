@@ -4,10 +4,13 @@ const glob = require('glob');
 const PugPlugin = require('pug-plugin');
 const CopyPlugin = require("copy-webpack-plugin");
 const Ttf2WoffPlugin = require('./plugins/ttf2woff-plugin')
+const PostProductionPlugin = require('./plugins/post-production-plugin')
+
+const isProduction = process.argv[process.argv.indexOf('--mode') + 1] === 'production';
 
 module.exports = {
     //stats: 'errors-only',
-    devtool: 'cheap-module-source-map',
+    devtool: isProduction ? false : 'source-map',
     output: {
         path: path.join(__dirname, 'dist/'),
         clean: true,
@@ -28,7 +31,7 @@ module.exports = {
         new Ttf2WoffPlugin({
             fontStyleFile: path.resolve(__dirname, 'src/styles/fonts.scss')
         }),
-        //new CopyPlugin({})
+        new PostProductionPlugin()
     ],
     devServer: {
         compress: false,
@@ -42,7 +45,6 @@ module.exports = {
             logging: 'error'
         },
     },
-    mode: 'development',
     resolve: {
         alias: {
             '@src': path.resolve(__dirname, 'src/'),
@@ -58,7 +60,7 @@ module.exports = {
                     {
                         loader: 'sass-loader',
                         options: {
-                            sourceMap: true,
+                            sourceMap: isProduction,
                         }
                     }
                 ],
