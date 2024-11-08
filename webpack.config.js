@@ -6,26 +6,29 @@ const CopyPlugin = require("copy-webpack-plugin");
 const Ttf2WoffPlugin = require('./plugins/ttf2woff-plugin')
 
 module.exports = {
+    //stats: 'errors-only',
+    devtool: 'cheap-module-source-map',
     output: {
         path: path.join(__dirname, 'dist/'),
         clean: true,
-        filename: 'assets/scripts/[name].js'
+        filename: 'assets/scripts/[name].js',
+        devtoolModuleFilenameTemplate: info => 'file:///' + path.resolve(info.absoluteResourcePath).replace(/\\/g, '/'),
     },
     plugins: [
         new PugPlugin({
             entry: 'src/pages/',
+            css: {
+                // CSS output filename with hash for unique id
+                filename: 'assets/styles/[name].css'
+            },
+            optimization: {
+                minimize: false
+            },
         }),
         new Ttf2WoffPlugin({
             fontStyleFile: path.resolve(__dirname, 'src/styles/fonts.scss')
         }),
-        new CopyPlugin({
-            patterns: [
-                {
-                    from: 'assets/fonts/converted/**/*',
-                    to: 'assets/fonts/[name].[ext]'
-                }
-            ]
-        })
+        //new CopyPlugin({})
     ],
     devServer: {
         compress: false,
@@ -34,6 +37,9 @@ module.exports = {
         static: {
             directory: path.join(__dirname, './'),
             serveIndex: true,
+        },
+        client: {
+            logging: 'error'
         },
     },
     mode: 'development',
@@ -48,7 +54,7 @@ module.exports = {
             {
                 test: /\.scss$/,
                 use: [
-                    'resolve-url-loader',
+                    { loader: 'css-loader', options: { sourceMap: true } },
                     {
                         loader: 'sass-loader',
                         options: {
@@ -56,7 +62,6 @@ module.exports = {
                         }
                     }
                 ],
-                type: "asset/resource",
                 generator: {
                     filename: "assets/styles/[name].css",
                 },
@@ -70,6 +75,13 @@ module.exports = {
                 type: 'asset/resource',
                 generator: {
                     filename: '[path][name][ext]'
+                }
+            },
+            {
+                test: /\.(ttf|woff|woff2)$/i,
+                type: 'asset/resource',
+                generator: {
+                    filename: 'assets/fonts/[name][ext]'
                 }
             },
         ]
