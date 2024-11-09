@@ -37,6 +37,7 @@ module.exports = {
         compress: false,
         port: 9000,
         hot: true,
+        open: true,
         static: {
             directory: path.join(__dirname, './'),
             serveIndex: true,
