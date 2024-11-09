@@ -1,1 +1,5 @@
 @use '@src/styles/fonts';
+@use '@src/styles/core';
+
+@forward '@node/owl.carousel/dist/assets/owl.carousel';
+@forward '@node/owl.carousel/dist/assets/owl.theme.default.min';

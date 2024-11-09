@@ -3,8 +3,9 @@ const glob = require('glob');
 
 const PugPlugin = require('pug-plugin');
 const CopyPlugin = require("copy-webpack-plugin");
-const Ttf2WoffPlugin = require('./plugins/ttf2woff-plugin')
-const PostProductionPlugin = require('./plugins/post-production-plugin')
+const Ttf2WoffPlugin = require('./plugins/ttf2woff-plugin');
+const PostProductionPlugin = require('./plugins/post-production-plugin');
+const DebugAliasPlugin = require('./plugins/debug-alias-plugin');
 
 const isProduction = process.argv[process.argv.indexOf('--mode') + 1] === 'production';
 
@@ -15,13 +16,12 @@ module.exports = {
         path: path.join(__dirname, 'dist/'),
         clean: true,
         filename: 'assets/scripts/[name].js',
-        devtoolModuleFilenameTemplate: info => 'file:///' + path.resolve(info.absoluteResourcePath).replace(/\\/g, '/'),
     },
     plugins: [
+        new DebugAliasPlugin(),
         new PugPlugin({
             entry: 'src/pages/',
             css: {
-                // CSS output filename with hash for unique id
                 filename: 'assets/styles/[name].css'
             },
             optimization: {
@@ -48,21 +48,28 @@ module.exports = {
     },
     resolve: {
         alias: {
-            '@src': path.resolve(__dirname, 'src/'),
-            '@assets': path.resolve(__dirname, 'assets/'),
-        }
+            '@src': path.resolve(__dirname, 'src'),
+            '@assets': path.resolve(__dirname, 'assets'),
+            '@node': path.resolve(__dirname, 'node_modules'),
+        },
     },
     module: {
         rules: [
             {
                 test: /\.scss$/,
                 use: [
-                    { loader: 'css-loader', options: { sourceMap: true } },
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            sourceMap: isProduction,
+                            import: true
+                        }
+                    },
                     {
                         loader: 'sass-loader',
                         options: {
                             sourceMap: isProduction,
-                        }
+                        },
                     }
                 ],
                 generator: {
