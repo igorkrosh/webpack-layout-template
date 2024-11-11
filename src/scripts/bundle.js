@@ -1,17 +1,25 @@
 global.$ = global.jQuery = require('jquery');
 require('owl.carousel');
+require('jquery-modal');
+require('jquery-mask-plugin');
 
 global.SimpleLightbox = require('simple-lightbox');
 global.SimpleLightbox.registerAsJqueryPlugin($);
 
-$(document).ready(Core)
+$(document).ready(Core);
 
 function Core()
 {
-    InitLightbox()
+    InitLightbox();
+    InitMaskPlugin();
 }
 
 function InitLightbox()
 {
     $('a.lightbox').simpleLightbox();
+}
+
+function InitMaskPlugin()
+{
+    $('input.phone').mask('+7(000) 000-00-00')
 }

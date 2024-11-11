@@ -25,6 +25,14 @@ html(lang="ru")
                 h2 Simple Lightbox
                 a.lightbox(href="@assets/images/image.jpg")
                     img(src="@assets/images/image.jpg")
+                h2 jQuery Modal
+                .modal#ex1
+                    p Modal text
+                    a(href="" rel="modal:close") Close
+                p
+                    a(href="#ex1" rel="modal:open") Open Modal
+                h2 jQuery Mask
+                input.phone
 
 
         +IncludeJS('bundle.js')
