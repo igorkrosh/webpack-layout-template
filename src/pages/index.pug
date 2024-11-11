@@ -22,7 +22,9 @@ html(lang="ru")
                         +LogoSlide('@assets/images/icons/jquery.svg', 'https://jquery.com/')
         section.docs-content
             .container
-
+                h2 Simple Lightbox
+                a.lightbox(href="@assets/images/image.jpg")
+                    img(src="@assets/images/image.jpg")
 
 
         +IncludeJS('bundle.js')
