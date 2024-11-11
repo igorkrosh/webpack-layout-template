@@ -4,8 +4,26 @@ doctype html
 html(lang="ru")
     include @src/components/head
     body
-        .container
-            h1 Hi from PUG!saaaaasss
-            img(src="@assets/images/icons/webpack.svg")
+        include @src/components/header
+        section.main-screen
+            .container
+                .text-wrapper
+                    span.repname Webpack Layout Template
+                    h1 Шаблон для разработки и генерации статичных сайтов в Webpack
+                .slider-wrapper
+                    .owl-carousel
+                        mixin LogoSlide(img, href)
+                            a(href=href target="_blank").logo-slide
+                                img(src=img)
+                        +LogoSlide('@assets/images/icons/webpack.svg', 'https://webpack.js.org/')
+                        +LogoSlide('@assets/images/icons/pug.svg', 'https://pugjs.org/')
+                        +LogoSlide('@assets/images/icons/scss.svg', 'https://sass-lang.com/')
+                        +LogoSlide('@assets/images/icons/javascript.svg', 'https://developer.mozilla.org/en/docs/Web/JavaScript/Reference')
+                        +LogoSlide('@assets/images/icons/jquery.svg', 'https://jquery.com/')
+        section.docs-content
+            .container
+
+
+
         +IncludeJS('bundle.js')
         +IncludeJS('main.js')

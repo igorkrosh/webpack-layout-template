@@ -1,4 +1,164 @@
-h1
+body
 {
-    color: red;
+    background: #161618;
+    color: white;
+    font-family: 'Inter';
+}
+
+header
+{
+    background: rgba(22, 22, 24, 0.5);
+    padding: 20px 0;
+    position: fixed;
+    left: 0;
+    width: 100%;
+    top: 0;
+
+    .container
+    {
+        display: flex;
+        align-items: center;
+    }
+
+    .icon-logo
+    {
+        display: flex;
+        align-items: center;
+        img
+        {
+            width: 24px;
+            height: 24px;
+            margin-right: 10px;
+        }
+
+        span
+        {
+            font-weight: 500;
+            font-size: 16px;
+        }
+    }
+
+    .menu-wrapper
+    {
+        margin-left: auto;
+        a
+        {
+            font-size: 15px;
+            margin: 0 5px;
+        }
+    }
+
+    .links-wrapper
+    {
+        display: flex;
+        align-items: center;
+        a
+        {
+            display: inline-flex;
+            align-items: center;
+        }
+
+        img
+        {
+            width: 24px;
+            height: 24px;
+        }
+
+        .gitverse
+        {
+            filter: brightness(100);
+        }
+    }
+
+    .separator
+    {
+        position: relative;
+    }
+
+    .separator:before
+    {
+        content: '';
+        width: 1px;
+        height: 25px;
+        background: #2e2e32;
+        display: block;
+        margin: 0 15px;
+    }
+}
+
+section
+{
+    padding: 60px;
+}
+
+section.main-screen
+{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+
+    .container
+    {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+    }
+
+    .text-wrapper
+    {
+        width: 60%;
+
+        .repname
+        {
+            font-size: 60px;
+            font-weight: 600;
+            color: rgba(64,61,254,1);
+        }
+
+        h1
+        {
+            font-size: 45px;
+            font-weight: 600;
+        }
+    }
+
+    .slider-wrapper
+    {
+        width: 40%;
+
+        .owl-item
+        {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            .logo-slide
+            {
+                transform: scale(0);
+            }
+        }
+
+        .owl-item.active
+        {
+            .logo-slide
+            {
+                transform: scale(1);
+            }
+        }
+
+        .logo-slide
+        {
+            width: 220px;
+            transition: 0.7s;
+            img
+            {
+                max-width: 100%;
+            }
+        }
+    }
+}
+
+section.docs-content
+{
+    background: #1b1a1f;
 }
