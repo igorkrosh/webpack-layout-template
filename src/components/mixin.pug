@@ -5,3 +5,7 @@ mixin IncludeCSS(filename)
 mixin IncludeJS(filename)
     - let path = `@src/scripts/${filename}`
     script(src=path)
+
+mixin BtnMenu()
+    button.btn-menu
+        span

@@ -113,3 +113,65 @@ button, a
         display: none;
     }
 }
+
+
+.btn-menu
+{
+    width: 40px;
+    height: 40px;
+    border: none;
+    position: relative;
+    transition: 0.5s;
+    background: none;
+    display: none;
+}
+
+.btn-menu:before, .btn-menu:after, .btn-menu span
+{
+    height: 2px;
+    position: absolute;
+    background: #000;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: 0.5s;
+}
+
+.btn-menu span
+{
+    width: 65%;
+}
+
+.btn-menu:before
+{
+    content: "";
+    width: 65%;
+    transform: translate(-50%, -6px);
+}
+
+.btn-menu:after
+{
+    content: "";
+    width: 65%;
+    transform: translate(-50%, 6px);
+}
+
+.btn-menu:hover:after, .btn-menu:hover:before, .btn-menu:hover span
+{
+    width: 65%;
+}
+
+.btn-menu.active span
+{
+    opacity: 0;
+}
+
+.btn-menu.active:after
+{
+    top: 50%;
+    transform: translate(-50%, -50%) rotate(-135deg);
+}
+
+.btn-menu.active:before
+{
+    transform: translate(-50%, -50%) rotate(135deg);
+}
