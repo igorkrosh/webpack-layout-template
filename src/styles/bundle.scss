@@ -1,4 +1,6 @@
+@use '@src/styles/variables';
 @use '@src/styles/fonts';
+@use '@src/styles/animations';
 @use '@src/styles/core';
 
 @forward '@node/owl.carousel/dist/assets/owl.carousel';
