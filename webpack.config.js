@@ -27,14 +27,6 @@ module.exports = {
             optimization: {
                 minimize: false
             },
-            loaderOptions: {
-                sources: [
-                    {
-                        tag: 'a',
-                        attributes: ['href']
-                    }
-                ]
-            }
         }),
         new Ttf2WoffPlugin({
             fontStyleFile: path.resolve(__dirname, 'src/styles/fonts.scss')
