@@ -70,7 +70,7 @@ module.exports = {
                     {
                         loader: 'css-loader',
                         options: {
-                            sourceMap: isProduction,
+                            sourceMap: !isProduction,
                             import: true,
                             url: {
                                 filter: (url) => {
@@ -85,7 +85,7 @@ module.exports = {
                     {
                         loader: 'sass-loader',
                         options: {
-                            sourceMap: isProduction,
+                            sourceMap: !isProduction,
                         },
                     }
                 ],
