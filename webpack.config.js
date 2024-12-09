@@ -65,13 +65,22 @@ module.exports = {
         rules: [
             {
                 test: /\.scss$/,
+                exclude: /\/node_modules\//,
                 use: [
                     {
                         loader: 'css-loader',
                         options: {
                             sourceMap: isProduction,
-                            import: true
-                        }
+                            import: true,
+                            url: {
+                                filter: (url) => {
+                                    if (url.startsWith('@assets')) {
+                                        return true;
+                                    }
+                                    return false;
+                                }
+                            }
+                        },
                     },
                     {
                         loader: 'sass-loader',
@@ -93,7 +102,7 @@ module.exports = {
                 type: 'asset/resource',
                 generator: {
                     filename: '[path][name][ext]'
-                }
+                },
             },
             {
                 test: /\.(ttf|woff|woff2)$/i,
