@@ -95,3 +95,21 @@ button, a
         max-width: 100%;
     }
 }
+
+.blocker
+{
+    z-index: 100;
+}
+
+.tab-viewer
+{
+    position: relative;
+    transition: 0.5s;
+
+    .tab:not(.active)
+    {
+        position: absolute;
+        top: 0;
+        display: none;
+    }
+}

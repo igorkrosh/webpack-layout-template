@@ -29,3 +29,12 @@ block content
                 a(href="#ex1" rel="modal:open") Open Modal
             h2 jQuery Mask
             input.phone
+            h2 Tabs
+            .btn-wrapper
+                button.btn-tab(target="tab-1").active tab1
+                button.btn-tab(target="tab-2") tab2
+            .tab-viewer
+                .tab.active(tab-name="tab-1")
+                    h3 tab1
+                .tab(tab-name="tab-2")
+                    h3 tab2
