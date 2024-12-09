@@ -1,0 +1,9 @@
+include @src/components/mixin
+
+doctype html
+html(lang="ru")
+    include @src/components/head
+    body
+        include @src/components/header
+        block content
+    include @src/components/scripts
