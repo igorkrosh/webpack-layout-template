@@ -1,9 +1,10 @@
-include @src/components/mixin
+include @src/components/core/mixin
 
 doctype html
-html(lang="ru")
-    include @src/components/head
+html(lang="en")
+    include @src/components/core/head
     body
-        include @src/components/header
+        include @src/components/core/header
         block content
-    include @src/components/scripts
+        include @src/components/core/footer
+    include @src/components/core/scripts
