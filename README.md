@@ -139,6 +139,9 @@ A flexible and functional template for laying out web pages using Webpack. This 
 - **Slider**
 
     OwlCarousel is used as a slider. Examples of its use can be found in the [docs](https://owlcarousel2.github.io/OwlCarousel2/)
+- **Modals**
+
+    Modal windows work using the [jQuery Modal](https://www.jquerymodal.com/) plugin
 
 ## Project Structure
 
