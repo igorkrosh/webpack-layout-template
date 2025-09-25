@@ -85,16 +85,38 @@ class Ttf2WoffPlugin
 
     createFontFace(fontsFaceArray)
     {
-        const content = fs.readFileSync(this.options.fontStyleFile, 'utf8');
+        let content = '';
+        let fileExists = false;
+        
+        try {
+            content = fs.readFileSync(this.options.fontStyleFile, 'utf8');
+            fileExists = true;
+            this.info(`Файл стилей шрифтов уже существует`);
+        } catch (error) {
+            if (error.code === 'ENOENT') {
+                this.info(`Файл стилей шрифтов не найден, будет создан`);
+            } else {
+                this.error(`Ошибка при чтении файла стилей шрифтов: ${error.message}`);
+                return;
+            }
+        }
 
-        if (content)
-            return this.info(`Файл стилей шрифтов уже содержит стили`);
+        if (fileExists && content.trim()) {
+            this.info(`Файл стилей шрифтов уже содержит стили`);
+            return;
+        }
 
         let fontStyle = this.mixinFontFace;
 
         for (const fontData of fontsFaceArray)
         {
             fontStyle += `@include FontFace("${fontData.fontFamily}", "${fontData.filePath}", "${fontData.weight}", "${fontData.style}");\n`
+        }
+
+        const dir = path.dirname(this.options.fontStyleFile);
+        if (!fs.existsSync(dir)) {
+            fs.mkdirSync(dir, { recursive: true });
+            this.info(`Создана директория: ${dir}`);
         }
 
         fs.writeFileSync(this.options.fontStyleFile, fontStyle);
@@ -121,9 +143,6 @@ class Ttf2WoffPlugin
                 }
 
                 this.info('Все шрифты обработаны')
-
-                if (!fs.existsSync(this.options.fontStyleFile))
-                    throw 'Файл стилей для шрифтов не найден';
 
                 this.createFontFace(fontsFaceArray);
             }
