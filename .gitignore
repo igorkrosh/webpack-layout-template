@@ -6,3 +6,4 @@ node_modules
 public
 dist
 assets/fonts/converted/
+src/styles/fonts.scss
